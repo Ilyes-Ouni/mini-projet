@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+<link href="${jstlCss}" rel="stylesheet" />
+<script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
+    <title>Modifier une région</title>
+</head>
+<body>
+<div layout:fragment="Mycontent">
+    <div class="container mt-5">
+        <div class="card-body">
+            <form action="update" method="get">
+                <div class="form-group">
+                    <label class="control-label" th:for="idRegion">ID Région :</label>
+                    <input type="number" name="idRegion" th:value="${region.idRegion}" readonly required="required"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" th:for="nom">Nom Région :</label>
+                    <input type="text" name="nom" th:value="${region.nom}" class="form-control" id="nom" required="required"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" th:for="date">Date création :</label>
+                    <input type="date" name="date" th:value="${#dates.format(region.dateCreation, 'yyyy-MM-dd')}" class="form-control" id="date" required="required"/>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 20px">Modifier</button>
+                </div>
+            </form>
+        </div>
+        <br/>
+        <br/>
+        <a href="regions-list">Liste Régions</a>
+    </div>
+</div>
+</body>
+</html>
