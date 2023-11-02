@@ -1,0 +1,13 @@
+<div style="height: 600px;">
+    <img mat-card-md-image src="{{imagePath}}" style="height: 500px;">
+    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 rounded-md">
+        <div className="flex text-sm text-gray-600 space-y-1 text-center">
+            <label htmlFor="file-upload"
+                class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                <input type="file" [(ngModel)]="file" name="file" id="file" (change)="onFilechange($event)">
+
+            </label>
+        </div>
+    </div>
+    <button mat-raised-button color="warn" style="display: flex; justify-content: center; margin-left: 40%; margin-bottom: 5%;" (click)="uploadImage()">Upload</button>
+</div>

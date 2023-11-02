@@ -1,0 +1,137 @@
+<div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style="flex-direction: column;">
+    <img class="mx-auto h-12 w-auto" src="https://www.prairial.org/static/220ec5c8a0b1c6815a62c20d5a0d8d3f/6aa74/logo_ouni.png">
+    <div class="mt-5 bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 max-w-md w-full space-y-8">
+        <h2 class="mt-5 text-3xl font-extrabold text-gray-900" *ngIf="showVerificationBloc == false">Sign up</h2>
+        <form [formGroup]="signupForm" class="space-y-6" *ngIf="showVerificationBloc == false">
+            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <div style="margin-right: 1%;">
+                    <label for="firstname" class="block text-sm font-medium text-gray-700"> Firstname </label>
+                    <div class="mt-1">
+                        <input id="firstname" formControlName="firstname" type="text" autocomplete="firstname"
+                            class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
+                        <!-- Display error message if 'firstname' field is invalid -->
+                        <div class="text-red-500" *ngIf="signupForm.get('firstname')?.hasError('required') && signupForm.get('firstname')?.touched">
+                            Firstname is required
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-left: 1%;">
+                    <label for="lastname" class="block text-sm font-medium text-gray-700"> Lastname </label>
+                    <div class="mt-1">
+                        <input id="lastname" formControlName="lastname" type="text" autocomplete="lastname"
+                            class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
+                        <!-- Display error message if 'lastname' field is invalid -->
+                        <div class="text-red-500" *ngIf="signupForm.get('lastname')?.hasError('required') && signupForm.get('lastname')?.touched">
+                            Lastname is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700"> Email address </label>
+                <div class="mt-1">
+                    <input id="email" formControlName="email" type="email" autocomplete="email"
+                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
+                  <!-- Display error message if 'email' field is invalid -->
+                    <div class="text-red-500" *ngIf="signupForm.get('email')?.hasError('required') && signupForm.get('email')?.touched">
+                        Email is required
+                    </div>
+                    <div class="text-red-500" *ngIf="signupForm.get('email')?.hasError('email') && signupForm.get('email')?.touched">
+                        Invalid email format
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700"> Password </label>
+                <div class="mt-1">
+                    <input id="password" formControlName="password" type="password" autocomplete="current-password"
+                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        
+                        <!-- Display error message if 'password' field is invalid -->
+                        <div class="text-red-500" *ngIf="signupForm.get('password')?.hasError('required') && signupForm.get('password')?.touched">
+                            Password is required
+                        </div>
+                        <div class="text-red-500" *ngIf="signupForm.get('password')?.hasError('minlength') && signupForm.get('password')?.touched">
+                            Password must be at least 6 characters long
+                        </div>
+                </div>
+            </div>
+
+            <div>
+                <label for="confirmPassword" class="block text-sm font-medium text-gray-700"> Confirm Password </label>
+                <div class="mt-1">
+                    <input id="confirmPassword" formControlName="confirmPassword" type="password"
+                        autocomplete="current-password"
+                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        
+                        <!-- Display error message if 'confirmPassword' field is invalid -->
+                        <div class="text-red-500" *ngIf="signupForm.get('confirmPassword')?.hasError('required') && signupForm.get('confirmPassword')?.touched">
+                            Confirm Password is required
+                        </div>
+
+                        <div class="text-red-500" *ngIf="signupForm.get('confirmPassword')?.touched && signupForm.get('confirmPassword')?.value != signupForm.get('password')?.value">
+                            Confirm Password should match the password
+                        </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="file" class="block text-sm font-medium text-gray-700"> File </label>
+                <input type="file" class="font-medium text-indigo-600 hover:text-indigo-500" required [(ngModel)]="file" name="picture" id="file" for="file" type="file" class="form-control" accept="image/*" name="picture" (change)="this.onFilechange($event)">
+            </div>
+            
+
+            <div class="flex items-center justify-between">
+                <div class="text-sm">
+                    <a [routerLink]="['/auth']" class="font-medium text-indigo-600 hover:text-indigo-500"> 
+                        Already have an account? 
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <button (click)="signup()"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Signup
+                </button>
+            </div>
+        </form>
+
+
+        <h2 class="mt-5 text-3xl font-extrabold text-gray-900" *ngIf="showVerificationBloc">Verify Email</h2>
+        <form [formGroup]="verificationForm" class="space-y-6" *ngIf="showVerificationBloc">
+            <div>
+                <label for="typedCode"  class="block text-sm font-medium text-gray-700"> Verification Code </label>
+                <div class="mt-1">
+                    <input id="typedCode" formControlName="typedCode" type="number" autocomplete="typedCode"
+                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        
+                    <!-- Display error message if 'typedCode' field is invalid -->
+                    <div class="text-red-500" *ngIf="verificationForm.get('typedCode')?.hasError('required') && verificationForm.get('typedCode')?.touched">
+                        Verification Code is required
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <div class="text-sm">
+                    <a [routerLink]="['/auth']" class="font-medium text-indigo-600 hover:text-indigo-500"> 
+                        Already have an account? 
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <button (click)="showCodeBloc()"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Verify
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

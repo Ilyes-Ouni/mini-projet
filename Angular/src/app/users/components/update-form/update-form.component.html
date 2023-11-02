@@ -1,0 +1,48 @@
+<h5 style="text-align: center; font-style: oblique; margin-bottom: 5%; width: 400px;">Update User</h5>
+<form #UpdateUser="ngForm" (ngSubmit)="UpdateUs(UpdateUser.value)" [formGroup]="UserForm" method="POST" class="space-y-6" style="margin-left: 2%; margin-right: 2%;">
+    <div style="display: flex; align-items: baseline;">
+        <div>
+            <label for="Firstname" class="block text-sm font-medium text-gray-700"> Firstname </label>
+            <div class="mt-1">
+                <input id="Firstname" formControlName="Firstname" name="Firstname" type="text" autocomplete="Firstname" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+            </div>
+        </div>
+        <div style="margin-left: 5%;" >
+            <label for="Lastname" class="block text-sm font-medium text-gray-700"> Lastname </label>
+            <div class="mt-1">
+            <input id="Lastname" formControlName="Lastname" name="Lastname" type="text" autocomplete="Lastname" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <label for="email" class="block text-sm font-medium text-gray-700"> Email </label>
+        <div class="mt-1">
+            <input id="email" formControlName="email" name="email" type="email" autocomplete="email" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+        </div>
+    </div>
+
+
+    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+        <div className="flex text-sm text-gray-600 space-y-1 text-center">
+            <label htmlFor="file-upload"
+                class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                <input type="file" class="font-medium text-indigo-600 hover:text-indigo-500" required formControlName="file" name="picture" id="file" for="file" type="file" class="form-control" accept="image/*" name="picture" (change)="this.onFilechange($event)">
+            </label>
+        </div>
+    </div>
+
+    <div>
+        <label for="Authority" class="block text-sm font-medium text-gray-700">Authority</label>
+        <div class="mt-1">
+            <select id="Authority" formControlName="Authority" name="Authority" required class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="ADMIN">ADMIN</option>
+                <option value="USER">USER</option>
+            </select>
+        </div>
+    </div>
+    
+    <div>
+      <button style="margin-bottom: 2%;" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Submit</button>
+    </div>
+  </form>
