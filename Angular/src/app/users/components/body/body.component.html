@@ -1,0 +1,55 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- Position Column  -->
+        <ng-container matColumnDef="userID">
+            <th mat-header-cell *matHeaderCellDef> userID </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+        
+        <!-- Name Column -->
+        <ng-container matColumnDef="firstname">
+            <th mat-header-cell *matHeaderCellDef> firstName </th>
+            <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastname">
+            <th mat-header-cell *matHeaderCellDef> lastName </th>
+            <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef> Roles </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.role === 'ADMIN' ? 'ADMIN + USER' : element.role }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef> Image </th>
+            <td mat-cell *matCellDef="let element">
+                <img mat-card-md-image src="{{url+'/'+element.imagePath}}" (click)="openImage(element.imagePath)" style="height: 40px; border-radius: 50%;">
+            </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="options">
+            <th mat-header-cell *matHeaderCellDef><button mat-stroked-button color="accent" style="width: 160px;" (click)="addUser()" *ngIf="isAdmin"><mat-icon>add</mat-icon> ADD User</button></th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-mini-fab color="primary" (click)="updateUser(element.id)" *ngIf="isAdmin"><mat-icon>edit</mat-icon></button>
+                <button (click)="deleteUser(element.id)" mat-mini-fab color="warn" style="margin-left: 10%;" *ngIf="isAdmin"><mat-icon>delete</mat-icon></button>
+            </td>
+        </ng-container>
+
+        <!-- aria-label="Select page" [pageSize]="10" [length]="lengthTable" -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator pageSize="8" showFirstLastButtons>
+    </mat-paginator>
+</div>
